@@ -1,5 +1,5 @@
 # Web-Scraping-Cookie-Handler
-This Python script provides functionality to handle cookie acceptances during web scraping using Pyppeteer and asyncio. It generates and clicks on the accept cookie button based on the provided or stored XPath.
+This Python script provides functionality to handle cookie acceptances during web scraping using Pyppeteer and asyncio. It clicks on the accept cookie button based on the provided/stored XPath or dynamically generated XPath(if stored not provided).
 
 
 ## Usefulness
@@ -12,11 +12,28 @@ Web scraping often involves interacting with websites that have cookie acceptanc
 - **Reliability:** Handles various scenarios, including retries and error logging, ensuring robustness in the face of unexpected issues.
 
 
-## Prerequisites
-- Python
-- asyncio
-- pyppeteer
+## Prerequisites (minimum versions specified)
+- Python :: 3
+- asyncio :: 3.4.3
+- pyppeteer :: 0.2.5
 
+## Download
+PyPI: https://pypi.org/project/CookieXplorer/
+
+$ pip install CookieXplorer
+
+Source: https://github.com/amanojha258/Web-Scraping-Cookie-Handler
+
+## Description:
+The handle_cookie_accept_xpath function takes four parameters:
+
+page (required): The Pyppeteer page instance.
+accept_cookie_xpath (optional): The XPath of the cookie acceptance button (if not provided, the function generates it).
+accept_cookie_button (default: False): A flag indicating whether to automatically click on the cookie button.
+max_retries (default: 0): The maximum number of retries in case of errors.
+
+## Functionality:
+When the page parameter is provided, the function searches for specific phrases commonly used in cookie acceptance buttons. It checks/employs certain conditions to accurately locate the button. If the accept_cookie_xpath parameter is not provided, the function generates an XPath for the button. Once the XPath is located/generated, the function utilizes Pyppeteer's page.click() functionality to automatically accept the cookie button.
 
 ## Usage
 click_success, xpath_generated = await handle_cookie_accept_xpath(
